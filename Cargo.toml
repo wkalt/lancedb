@@ -15,20 +15,20 @@ categories = ["database-implementations"]
 rust-version = "1.78.0"
 
 [workspace.dependencies]
-lance = { "version" = "=2.0.0-beta.5", default-features = false, "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-core = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-datagen = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-file = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-io = { "version" = "=2.0.0-beta.5", default-features = false, "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-index = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-linalg = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-namespace = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-namespace-impls = { "version" = "=2.0.0-beta.5", default-features = false, "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-table = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-testing = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-datafusion = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-encoding = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
-lance-arrow = { "version" = "=2.0.0-beta.5", "tag" = "v2.0.0-beta.5", "git" = "https://github.com/lance-format/lance.git" }
+lance = { path = "/home/wyatt/work/lance/rust/lance", default-features = false }
+lance-core = { path = "/home/wyatt/work/lance/rust/lance-core" }
+lance-datagen = { path = "/home/wyatt/work/lance/rust/lance-datagen" }
+lance-file = { path = "/home/wyatt/work/lance/rust/lance-file" }
+lance-io = { path = "/home/wyatt/work/lance/rust/lance-io", default-features = false }
+lance-index = { path = "/home/wyatt/work/lance/rust/lance-index" }
+lance-linalg = { path = "/home/wyatt/work/lance/rust/lance-linalg" }
+lance-namespace = { path = "/home/wyatt/work/lance/rust/lance-namespace" }
+lance-namespace-impls = { path = "/home/wyatt/work/lance/rust/lance-namespace-impls", default-features = false }
+lance-table = { path = "/home/wyatt/work/lance/rust/lance-table" }
+lance-testing = { path = "/home/wyatt/work/lance/rust/lance-testing" }
+lance-datafusion = { path = "/home/wyatt/work/lance/rust/lance-datafusion" }
+lance-encoding = { path = "/home/wyatt/work/lance/rust/lance-encoding" }
+lance-arrow = { path = "/home/wyatt/work/lance/rust/lance-arrow" }
 ahash = "0.8"
 # Note that this one does not include pyarrow
 arrow = { version = "56.2", optional = false }

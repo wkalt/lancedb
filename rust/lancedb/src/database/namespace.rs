@@ -206,11 +206,6 @@ impl Database for LanceNamespaceDatabase {
         let create_empty_request = CreateEmptyTableRequest {
             id: Some(table_id.clone()),
             location: None,
-            properties: if self.storage_options.is_empty() {
-                None
-            } else {
-                Some(self.storage_options.clone())
-            },
         };
 
         let create_empty_response = self
