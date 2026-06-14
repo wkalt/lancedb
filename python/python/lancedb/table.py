@@ -698,7 +698,6 @@ def _normalize_progress(progress):
     return progress, False
 
 
-
 def _computed_groups(computed):
     """Group computed columns by expression, preserving declaration order
     (struct-returning functions need their columns adjacent so schema order
@@ -838,7 +837,7 @@ class Table(ABC):
         import warnings
 
         warnings.warn(
-            'add_computed_column is deprecated; use add_columns(computed='
+            "add_computed_column is deprecated; use add_columns(computed="
             '{"vec": embed("data")}).',
             DeprecationWarning,
             stacklevel=2,
@@ -3741,7 +3740,11 @@ class LanceTable(Table):
 
     def add_columns(
         self,
-        transforms: Dict[str, str] | pa.field | List[pa.field] | pa.Schema | None = None,
+        transforms: Dict[str, str]
+        | pa.field
+        | List[pa.field]
+        | pa.Schema
+        | None = None,
         *,
         computed: Optional[Dict] = None,
     ) -> Optional[AddColumnsResult]:
@@ -3767,6 +3770,7 @@ class LanceTable(Table):
         num_workers: Optional[int] = None,
         max_workers: Optional[int] = None,
         batch_size: Optional[int] = None,
+        priority: Optional[str] = None,
     ) -> str:
         """Trigger recompute of computed columns (REFRESH COLUMN).
 
@@ -3775,9 +3779,10 @@ class LanceTable(Table):
         refresh together. Returns the refresh job id. Server-backed
         feature (LanceDB Enterprise / Cloud).
 
-        num_workers / max_workers / batch_size are per-refresh scheduling
-        knobs (how to run THIS refresh) and override any default the
-        function carries.
+        num_workers / max_workers / batch_size / priority are per-refresh
+        scheduling knobs (how to run THIS refresh) and override any default
+        the function carries. `priority` is a Kueue tier
+        (training | interactive | backfill).
         """
         if isinstance(columns, str):
             columns = [columns]
@@ -3788,9 +3793,9 @@ class LanceTable(Table):
                 num_workers=num_workers,
                 max_workers=max_workers,
                 batch_size=batch_size,
+                priority=priority,
             )
         )
-
 
     def alter_columns(
         self, *alterations: Iterable[Dict[str, str]]
@@ -5462,13 +5467,15 @@ class AsyncTable:
         num_workers: Optional[int] = None,
         max_workers: Optional[int] = None,
         batch_size: Optional[int] = None,
+        priority: Optional[str] = None,
     ) -> str:
         """Trigger recompute of computed columns (REFRESH COLUMN).
         Returns the refresh job id. Server-backed feature.
 
-        num_workers / max_workers / batch_size are per-refresh scheduling
-        knobs (how to run THIS refresh); they override any default the
-        function carries."""
+        num_workers / max_workers / batch_size / priority are per-refresh
+        scheduling knobs (how to run THIS refresh); they override any default
+        the function carries. `priority` is a Kueue tier
+        (training | interactive | backfill)."""
         if isinstance(columns, str):
             columns = [columns]
         return await self._inner.refresh_column(
@@ -5477,11 +5484,16 @@ class AsyncTable:
             num_workers=num_workers,
             max_workers=max_workers,
             batch_size=batch_size,
+            priority=priority,
         )
 
     async def add_columns(
         self,
-        transforms: dict[str, str] | pa.field | List[pa.field] | pa.Schema | None = None,
+        transforms: dict[str, str]
+        | pa.field
+        | List[pa.field]
+        | pa.Schema
+        | None = None,
         *,
         computed: Optional[Dict] = None,
     ) -> Optional[AddColumnsResult]:
@@ -5542,7 +5554,7 @@ class AsyncTable:
         import warnings
 
         warnings.warn(
-            'add_computed_column is deprecated; use add_columns(computed='
+            "add_computed_column is deprecated; use add_columns(computed="
             '{"col": fn("input_col")}).',
             DeprecationWarning,
             stacklevel=2,
