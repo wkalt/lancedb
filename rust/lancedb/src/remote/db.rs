@@ -73,6 +73,8 @@ struct RemoteCreateMaterializedViewResponse {
 
 #[derive(serde::Serialize)]
 struct RemoteRefreshMaterializedViewRequest {
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    full: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     src_version: Option<u64>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -762,6 +764,7 @@ impl<S: HttpSend> Database for RemoteDatabase<S> {
         request: RefreshMaterializedViewRequest,
     ) -> Result<String> {
         let body = RemoteRefreshMaterializedViewRequest {
+            full: request.full,
             src_version: request.src_version,
             num_workers: request.num_workers,
             max_workers: request.max_workers,
