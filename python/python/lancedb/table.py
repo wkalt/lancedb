@@ -3800,7 +3800,7 @@ class LanceTable(Table):
                 priority=priority,
             )
         )
-        return JobHandle(self._conn, job_id)
+        return JobHandle(self._conn, job_id, table=self.name)
 
     def alter_columns(
         self, *alterations: Iterable[Dict[str, str]]
