@@ -61,3 +61,21 @@ rustflags = ["-Ctarget-feature=+crt-static"]
 # Experimental target for Arm64 Windows
 [target.aarch64-pc-windows-msvc]
 rustflags = ["-Ctarget-feature=+crt-static"]
+
+# Builds against the lance checkout beside this one, so the Python wheel sees
+# DataReplacement's new fields before a lance release carries them.
+[patch."https://github.com/lance-format/lance.git"]
+lance = { path = "../lance/rust/lance" }
+lance-arrow = { path = "../lance/rust/lance-arrow" }
+lance-core = { path = "../lance/rust/lance-core" }
+lance-datafusion = { path = "../lance/rust/lance-datafusion" }
+lance-datagen = { path = "../lance/rust/lance-datagen" }
+lance-encoding = { path = "../lance/rust/lance-encoding" }
+lance-file = { path = "../lance/rust/lance-file" }
+lance-index = { path = "../lance/rust/lance-index" }
+lance-io = { path = "../lance/rust/lance-io" }
+lance-linalg = { path = "../lance/rust/lance-linalg" }
+lance-namespace = { path = "../lance/rust/lance-namespace" }
+lance-namespace-impls = { path = "../lance/rust/lance-namespace-impls" }
+lance-table = { path = "../lance/rust/lance-table" }
+lance-testing = { path = "../lance/rust/lance-testing" }
