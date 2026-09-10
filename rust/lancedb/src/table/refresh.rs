@@ -142,7 +142,6 @@ async fn execute_refresh_column_with_source(
         WriteDestination::Dataset(dataset.clone()),
         Operation::DataReplacement {
             replacements,
-            source_fields: Vec::new(),
             replaced_offsets: None,
         },
         Some(source_version),
